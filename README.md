@@ -7,5 +7,6 @@ The aove repo contains some of the ML based algorithms.
 - Relaxation algorithm with margin
 - Widrow-Hoff or Least Mean Squared (LMS) Rule
 
-- more to be added later....
+
+`more to be added later....`
 
