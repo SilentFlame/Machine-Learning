@@ -12,6 +12,7 @@ def single_sample_perceptron():
 		iterations=iterations+1
 		ans=0
 		count=0
+		eta = 0.2
 		#print weight
 		for j in xrange(len(dataset)):
 			ans=0
@@ -19,7 +20,7 @@ def single_sample_perceptron():
 				ans=ans+float(weight[i]*dataset[j][i])
 			if(ans<0):
 				for i in xrange(3):
-					weight[i]=weight[i]+dataset[j][i]
+					weight[i]=weight[i]+eta*dataset[j][i]
 				break
 			count+=1
 		if count==len(dataset):
