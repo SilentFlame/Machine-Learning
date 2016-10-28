@@ -5,7 +5,6 @@ d2=[(-1,-4,-2), (-1,1,1), (-1,-1,-3), (-1,-3,2), (-1,-5,-3.25), (-1,-2,-4), (-1,
 
 dataset = [(1,2,7), (1,8,1), (1,7,5), (1,6,3), (1,7,8), (1,5,9), (1,4,5), (-1,-4,-2), (-1,1,1), (-1,-1,-3), (-1,-3,2), (-1,-5,-3.25), (-1,-2,-4), (-1,-7,-1)]
 
-
 #defining the function
 def single_sample_perceptron():
 	weight=[1,1,1]
@@ -32,10 +31,8 @@ def single_sample_perceptron():
 	print weight
 	print "No. of Iterations: ",
 	print iterations
-
 	return weight
 
-#
 
 def main():
 	a=single_sample_perceptron()
