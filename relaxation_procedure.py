@@ -24,12 +24,9 @@ def relaxation_procedure():
 	weight = [1,1,1]
 	eta = 0.3
 
-	# for i in xrange(len(dataset)):
-	# mod_value.append(square_values(dataset[i])
 	while(1):
 		noOfIterations += 1
 		sumEval = 0
-		# print weight
 		missClass = []
 		for i in xrange(len(dataset)):
 			sumEval = 0
@@ -47,8 +44,7 @@ def relaxation_procedure():
 
 		for i in xrange(3):
 			weight[i] = weight[i] + eta*semiAns[i]
-		# print "Misscalssified_length: ",		
-		# print len(missClass)
+
 		if(len(missClass)==0):
 			break
 	print "Total Iterations: ",
