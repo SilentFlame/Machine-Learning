@@ -1,5 +1,5 @@
 ## Machine learning algorithms ##
-The aove repo contains some of the ML based algorithms.
+The above repo contains some of the ML based algorithms.
 
 ### Algorithms Implemented ###
 - Single-sample perceptron
