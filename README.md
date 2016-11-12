@@ -6,6 +6,7 @@ The aove repo contains some of the ML based algorithms.
 - Single-sample perceptron with margin
 - Relaxation algorithm with margin
 - Widrow-Hoff or Least Mean Squared (LMS) Rule
+- K-mean Clustering algorithm on one feature.
 
 
 `more to be added later....`
