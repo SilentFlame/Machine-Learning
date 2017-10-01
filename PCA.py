@@ -15,7 +15,7 @@ def pca_function(data,k):
     for index_cols in range(0,number_cols):
         for index_rows in range(0,number_rows):
             data[index_rows][index_cols] = data[index_rows][index_cols] - mean_of_matrix[index_cols]
-    #Correcto        
+           
     cov = covariances(data);     
     eigen = eigenvectors(cov);    
     eigen = sorted(eigen, key=lambda x: x[0])  
