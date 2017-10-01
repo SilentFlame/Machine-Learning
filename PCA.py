@@ -18,9 +18,12 @@ def pca_function(data,k):
     #Correcto        
     cov = covariances(data);     
     eigen = eigenvectors(cov);    
-    eigen = sorted(eigen, key=lambda x: x[0])
-    print(eigen)
-    return eigen
+    eigen = sorted(eigen, key=lambda x: x[0])  
+    for index_ei in range(0,len(eigen)):
+        eigen[index_ei] = eigen[index_ei][1]
+
+    return eigen[:k]
+
 def covariances(data):
     return numpy.cov(data)
 
@@ -29,8 +32,8 @@ def eigenvectors(cov):
     eigenvectors = numpy.linalg.eig(cov)[1]
     eigenvalues = numpy.linalg.eig(cov)[0]
     for num_eigenvalues in range(0,len(eigenvalues)):
-        eigen_vv.append((eigenvalues[num_eigenvalues],eigenvectors[num_eigenvalues]))
+        eigen_vv.append((eigenvalues[num_eigenvalues],list(eigenvectors[num_eigenvalues])))
     return eigen_vv
 
     
-print(pca_function([[1,2,3],[2,3,4],[3,4,5],[5,6,7]],4))
+print(pca_function([[1,2,3],[2,3,4],[3,4,5],[5,6,7]],2))
