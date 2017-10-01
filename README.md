@@ -45,3 +45,20 @@ $$\sum_{c}$$
 * Find the eigenvectos.
 * Sort it in a descendent way.
 * Define W with the K first eigenvectos.
+
+### LDA: *Linear discriminant analysis*
+Algorithm:
+1. Start:
+$$S_{b} = S_{w}= 0$$
+2. For each c class:
+* Calc average : 
+$$x_{c}$$
+* Calc:
+$$S_{b} = S_{b} + n_{c}(x_{c}-x)(x_{c}-x)^t$$
+* Covariances matrix:
+$$\sum_{c}$$
+* Calc:
+ $$S_{w}=S_{w}+\sum_{c}$$
+3. Calc eigenvector and eigenvalues.
+4. Get the firsts eigenvalues.
+
