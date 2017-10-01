@@ -33,3 +33,15 @@ if(ans<1):
 
 - Widrow-Hoff or Least Mean Squared (LMS) Rule
 ![widrow-hoff](https://cloud.githubusercontent.com/assets/9693795/18884895/0a57378e-8507-11e6-92ce-d45b9797c94b.png)
+
+### PCA: *Principal component analysis*
+Algorithm:
+* Calculate average of the data:
+$$x_{c}$$
+* Substract the avarage to the data:
+$$x_{i}=x_{c}-x_{i}$$
+* Calc the covariant matrix:
+$$\sum_{c}$$
+* Find the eigenvectos.
+* Sort it in a descendent way.
+* Define W with the K first eigenvectos.
