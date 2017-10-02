@@ -15,14 +15,12 @@ def matrix_plus_K(matrix,K):
             matrix[i][j] = matrix[i][j] + K            
     return matrix
 def vector_plus_K(vec,K):
+    vec_r = []
     for i in range(0,len(vec)):
-        vec[i] = vec[i] * K
-    return vec
+        vec_r.append(vec[i] * K) 
+    return vec_r
 
-def vector_plus_vector(vec_1,vec_2):
-    for i in range(0,len(vec_1)):
-        vec_1[i] = vec_1[i]*vec_2[i]
-    return vec_1[i]
+
 
 def matrix_inicialicer(rows, columns):
     matrix = []
@@ -37,6 +35,28 @@ def means_substract(mean_of_class,mean_of_matrix):
     for i in range(0,len(mean_of_class)):
         mean_of_class[i] = mean_of_class[i] - mean_of_matrix[i]
     return mean_of_class
+
+def vector_plus_vector(vec_1,vec_2):
+    vec = []
+    for i in range(0,len(vec_1)):
+        vec_row = []
+        for j in range(0,len(vec_1)):
+            vec_row.append(vec_1[i]*vec_2[j]) 
+        vec.append(vec_row)           
+    return vec
+    
+def matrix_plus_matrix(m1,m2):
+    for i in range(0,len(m1)):
+        for j in range(0,len(m1[i])):
+            m1[i][j] = m1[i][j] +m2[i][j]
+    return m1
+def eigenvectors(cov):
+    eigen_vv = []
+    eigenvectors = numpy.linalg.eig(cov)[1]
+    eigenvalues = numpy.linalg.eig(cov)[0]
+    for num_eigenvalues in range(0,len(eigenvalues)):
+        eigen_vv.append((eigenvalues[num_eigenvalues],list(eigenvectors[num_eigenvalues])))
+    return eigen_vv
 
 def pca_function(data,data_C,k):
     number_cols = len(data[0])   
@@ -77,36 +97,16 @@ def pca_function(data,data_C,k):
         Xc = traspuest_1(Xc)        
         covclase = covariances(Xc)        
         sw = matrix_plus_K(sw,covclase)        
-        mea_sub = means_substract(mean_of_class,mean_of_matrix)
-        print(mea_sub)
+        mea_sub = means_substract(mean_of_class,mean_of_matrix)        
         fir_m = vector_plus_K(mea_sub,Nc)
-        #fir_m = vector_plus_vector(fir_m,mea_sub)
-        print(fir_m)
+        fir_m = vector_plus_vector(fir_m,mea_sub)
+        sb = matrix_plus_matrix(sb,fir_m)        
+
+    eigen = eigenvectors(sb);    
+    eigen = sorted(eigen, key=lambda x: x[0])  
+    for index_ei in range(0,len(eigen)):
+        eigen[index_ei] = eigen[index_ei][1]
+    return eigen[:k]    
 
 
-
-
-
-
-    #print(data_no_repeted)
-# function[W]=lda(X,Xl,k)
-    
-#     m = mean(X,2); % Calcular la media
-#     Sw = zeros(F,F); % Completar con ceros
-#     Sb = zeros(F,F); % Completar con ceros
-#     Nc = length(unique(Xl)); % Obtener clases 
-#     for c=unique(Xl) % Por cada clase
-#         indices = Xl==c; % Vector para comprobar clases
-#         Xc=X(:,indices); % Comprobarlas
-#         MediaClase=mean(Xc,2); % Sacar la media
-#         CovClase = cov(Xc'); % Matriz de covarianza
-#         Sw=Sw+CovClase; % Cálculo de matriz intraclases
-#         Sb=Sb+(Nc*(MediaClase-m)*(MediaClase-m)'); % Cálculo de matriz entre
-#     end
-#     [Vec,Lam] = eig(Sb,Sw); % Obtener eigenvectore y egenvalores
-#     [V,I] = sort(diag(Lam),'descend'); % Ordenarlos
-#     Eigen = Vec(:,I); % Obtener los deseados
-#     W = Eigen(:,1:k); % Retornarlos
-# end
-
-pca_function([[1,2,3],[4,5,6],[7,8,9]],[[1],[2],[3]],3)
+print(pca_function([[1,2,3],[4,5,6],[7,8,9]],[[1],[2],[3]],3))
