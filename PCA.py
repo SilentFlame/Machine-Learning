@@ -7,10 +7,31 @@ def covariances(data):
 def eigenvectors(cov):
     eigen_vv = []
     eigenvectors = numpy.linalg.eig(cov)[1]
+    eigenvectors = format_matrix(eigenvectors)
+    eigenvectors = eigenvectors.transpose()
+    #eigen_vv.append(eigenvectors)
     eigenvalues = numpy.linalg.eig(cov)[0]
-    for num_eigenvalues in range(0,len(eigenvalues)):
-        eigen_vv.append((eigenvalues[num_eigenvalues],list(eigenvectors[num_eigenvalues])))
+    eigenvalues = format_vector(eigenvalues)
+    #eigen_vv.append(list(eigenvalues))
+    for i in range(0,len(eigenvalues)):
+        eigen_vv.append((eigenvalues[i],list(eigenvectors[i])))
     return eigen_vv
+
+def format_matrix(matrix):
+    for i in range(0,len(matrix)):
+        for j in range(0,len(matrix[i])):
+            matrix[i][j] = (truncate(matrix[i][j], 4))
+    return matrix
+
+def format_vector(vec):
+    for i in range(0,len(vec)):
+        vec[i]= truncate(vec[i], 4)
+    return vec
+
+def truncate(f, n):
+    s = '%.12f' % f
+    i, p, d = s.partition('.')
+    return float('.'.join([i, (d+'0'*n)[:n]]))
 
 def pca_function(data,k):
     number_cols = len(data[0])  
@@ -26,16 +47,13 @@ def pca_function(data,k):
         for index_rows in range(0,number_rows):
             data[index_rows][index_cols] = data[index_rows][index_cols] - mean_of_matrix[index_cols]
 
-    cov = covariances(data); 
-    #------------------#       
-    eigen = eigenvectors(cov); 
-    print(eigen)    
-    eigen = sorted(eigen, key=lambda x: x[0])  
-    for index_ei in range(0,len(eigen)):
-        eigen[index_ei] = eigen[index_ei][1]
-
+    cov = covariances(data);    
+    eigen = eigenvectors(cov);
+    eigen = sorted(eigen, key=lambda x: x[0])
+    eigen = eigen[::-1]
+    for i in range(0,len(eigen)):
+        eigen[i] = eigen[i][1]
+    eigen = format_matrix(eigen)
     return eigen[:k]
 
-    
-print(pca_function([[1,0,1,2],[0,1,2,0],[1,1,2,1],[0,1,2,1]],2))
 
