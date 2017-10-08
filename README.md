@@ -35,6 +35,38 @@ if(ans<1):
 ![widrow-hoff](https://cloud.githubusercontent.com/assets/9693795/18884895/0a57378e-8507-11e6-92ce-d45b9797c94b.png)
 
 
+
+
+
+### PCA: *Principal component analysis*
+Algorithm:
+* Calculate average of the data:
+$$x_{c}$$
+* Substract the avarage to the data:
+$$x_{i}=x_{c}-x_{i}$$
+* Calc the covariant matrix:
+$$\sum_{c}$$
+* Find the eigenvectos.
+* Sort it in a descendent way.
+* Define W with the K first eigenvectos.
+
+### LDA: *Linear discriminant analysis*
+Algorithm:
+1. Start:
+$$S_{b} = S_{w}= 0$$
+2. For each c class:
+* Calc average : 
+$$x_{c}$$
+* Calc:
+$$S_{b} = S_{b} + n_{c}(x_{c}-x)(x_{c}-x)^t$$
+* Covariances matrix:
+$$\sum_{c}$$
+* Calc:
+ $$S_{w}=S_{w}+\sum_{c}$$
+3. Calc eigenvector and eigenvalues.
+4. Get the firsts eigenvalues.
+
+
 ### KPCA: *Kernel Principal Component Analysis*
 
 Algorithm:
@@ -53,3 +85,4 @@ Implementaion:
 - We have a 2D non-linear data containing 2 classes marked with red and blue.
 - Kernel Principal Component Analysis Algorithm was applied on the data to separate both classes of data.
 - The resulting data can be visualised in 3D and 2D plot.
+
