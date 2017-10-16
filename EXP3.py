@@ -27,7 +27,7 @@ accumulative loss from timestep 1 up to timestep t.
     + Update probability for next time step with lambda_t = exp(-eta * L_t),
     p_t = lambda_t/|lambda_t|
 
-Implementatios of K-mean clustering algorithm is below.
+Implementatios of EXP3 clustering algorithm is below.
 """
 
 import random
@@ -62,7 +62,7 @@ def EXP3(losses):
     p_t = numpy.array([float(1/NUMB_ACTIONS) for i in range(NUMB_ACTIONS)])
     L_t = numpy.array([0. for i in range(NUMB_ACTIONS)])
     print ('Initialization')
-    print ('p_t', p_t ); print ('L_t', L_t)
+    print ('p_t', p_t ); print ('L_t', L_t); print ()
     
     for time_step in range(1, TIME_STEPS+1):
         action_i = chose_action(p_t)
